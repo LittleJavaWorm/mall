@@ -1,0 +1,12 @@
+eclipse.preferences.version=1
+encoding//sql/mall_tables.sql=UTF-8
+encoding//src/pers/liyonghong/mall/utils/itcast/commons/CommonUtils.java=UTF-8
+encoding//src/pers/liyonghong/mall/utils/itcast/commons/DateConverter.java=UTF-8
+encoding//src/pers/liyonghong/mall/utils/itcast/filter/GetRequest.java=UTF-8
+encoding//src/pers/liyonghong/mall/utils/itcast/jdbc/JdbcUtils.java=UTF-8
+encoding//src/pers/liyonghong/mall/utils/itcast/mail/Mail.java=UTF-8
+encoding//src/pers/liyonghong/mall/utils/itcast/mail/MailUtils.java=UTF-8
+encoding//src/pers/liyonghong/mall/utils/itcast/servlet/BaseServlet.java=UTF-8
+encoding//src/pers/liyonghong/mall/utils/itcast/vcode/servlet/VerifyCodeServlet.java=UTF-8
+encoding//src/pers/liyonghong/mall/utils/itcast/vcode/utils/VerifyCode.java=UTF-8
+encoding/<project>=UTF-8

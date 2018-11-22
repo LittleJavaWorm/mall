@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 这种方式与c3p0.properties相比有更多的优点 
+(1).更直观明显，很类似hibernate和spring的配置 
+(2).可以为多个数据源服务，提供default-config和named-config两种配置方式  -->
+
+<c3p0-config>
+  <!-- 使用默认的配置读取连接池对象 -->
+  <default-config>
+  	<!--  连接参数,useServerPrepStmts=true开启Mysql的预编译。 -->
+  	<!-- cachePrepStmts，SQL语句缓存：要想对同一SQL语句多次执行不是每次都预编译，就要使用cachePrepStmts=true，
+  	这个选项可以让JVM端缓存每个SQL语句的预编译结果，说白了就是以SQL语句为key, 将预编译结果缓存起来，
+  	下次遇到相同的SQL语句时作为key去get一下看看有没有这个SQL语句的预编译结果，有就直接合出来用 -->
+  	
+  	<!-- rewriteBatchedStatements,实现高性能的批量插入:
+  	 MySql的JDBC连接的url中要加rewriteBatchedStatements参数，并保证5.1.13以上版本的驱动，才能实现高性能的批量插入,
+  	rewriteBatchedStatements对INSERT/UPDATE/DELETE都有效，只不过对INSERT它为会预先重排一下SQL语句
+  	 -->
+    <property name="driverClass">com.mysql.jdbc.Driver</property>
+    <property name="jdbcUrl">jdbc:mysql://localhost:3306/mall?useServerPrepStmts=true&amp;cachePrepStmts=true&amp;rewriteBatchedStatements=true&amp;useUnicode=true&amp;characterEncoding=utf-8</property>
+    <property name="user">root</property>
+    <property name="password">lyh13540848990</property>
+    
+    <!-- 连接池参数 -->
+    <property name="initialPoolSize">5</property>
+    <property name="maxPoolSize">10</property>
+    <property name="checkoutTimeout">3000</property>
+  </default-config>
+
+<!-- 如果要使用default-config则初始化数据源的方式与第二种一样，如：
+private static ComboPooledDataSource ds = new ComboPooledDataSource();
+public static Connection getConnection() {
+    try {
+        return ds.getConnection();
+    } catch (SQLException e) {
+        throw new RuntimeException(e);
+    }
+}
+如果要使用named-config里面配置初始化数据源，则只要使用一个带参数的ComboPooledDataSource构造器就可以了
+private static ComboPooledDataSource ds = new ComboPooledDataSource("newboy-config");
+ -->
+<!--   <named-config name="newboy-config">
+     连接参数
+    <property name="driverClass">com.mysql.jdbc.Driver</property>
+    <property name="jdbcUrl">jdbc:mysql://localhost:3306/mall</property>
+    <property name="user">root</property>
+    <property name="password">lyh13540848990</property>
+    
+    连接池参数
+    <property name="initialPoolSize">5</property>
+    <property name="maxPoolSize">8</property>
+    <property name="checkoutTimeout">3000</property>
+  </named-config>
+  
+  <named-config name="oracle">
+    <property name="driverClass">com.mysql.jdbc.Driver</property>
+    <property name="jdbcUrl">jdbc:mysql://localhost:3306/jdbc</property>
+    <property name="user">root</property>
+    <property name="password">123456</property>
+
+    <property name="acquireIncrement">5</property>
+    <property name="initialPoolSize">10</property>
+    <property name="minPoolSize">5</property>
+    <property name="maxPoolSize">20</property>
+  </named-config> -->
+
+</c3p0-config>

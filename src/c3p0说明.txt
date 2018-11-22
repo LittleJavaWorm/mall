@@ -1,0 +1,31 @@
+
+c3p0的配置方式分为三种，分别是
+1、setters一个个地设置各个配置项
+即 使用Properties对象，把用户名密码等信息设置进对象中
+
+2、类路径下提供一个c3p0.properties文件
+配置见c3p0.properties
+实例化数据源对象的方式为：
+private static ComboPooledDataSource ds = new ComboPooledDataSource();
+public static Connection getConnection() {
+    try {
+        return ds.getConnection();
+    } catch (SQLException e) {
+        throw new RuntimeException(e);
+    }
+}
+
+
+3、类路径下提供一个c3p0-config.xml文件
+配置见c3p0-config.xml
+如果要使用default-config则初始化数据源的方式与第二种一样，如：
+private static ComboPooledDataSource ds = new ComboPooledDataSource();
+public static Connection getConnection() {
+    try {
+        return ds.getConnection();
+    } catch (SQLException e) {
+        throw new RuntimeException(e);
+    }
+}
+如果要使用named-config里面配置初始化数据源，则只要使用一个带参数的ComboPooledDataSource构造器就可以了
+private static ComboPooledDataSource ds = new ComboPooledDataSource("newboy-config");
